@@ -25,9 +25,51 @@ def backspaceCompare(s, t):
   
   return s_ans == t_ans
 
-# s = 'ab#c'
-# t = 'ad#c'
-s = "a#c"
-t = "b"
+# Optimized solution based off discussion post from user yongzx
+def backspaceCompare2(s, t):
+  si, ti = len(s) - 1, len(t) - 1
+  s_count = t_count = 0
 
-print(backspaceCompare(s, t))
+  while si >= 0 or ti >= 0:
+    # stops at non-deleted char in s or -1
+    while si >= 0:
+      if s[si] == '#':
+        s_count += 1
+        si -= 1
+      elif s_count > 0:
+        s_count -= 1
+        si -= 1
+      else:
+        break
+    
+    # stops at non-deleted char in t or -1
+    while ti >= 0:
+      if t[ti] == '#':
+        t_count += 1
+        ti -= 1
+      elif t_count > 0:
+        t_count -= 1
+        ti -= 1
+      else: 
+        break
+
+    if (ti < 0 <= si) or (si < 0 <= ti):
+      return False
+    if (ti >= 0 and si >= 0) and s[si] != t[ti]:
+      return False
+
+    si -= 1
+    ti -= 1
+  
+  return True
+
+
+
+
+
+s = 'abb#c'
+t = 'abd#c'
+# s = "a#c"
+# t = "b"
+
+print(backspaceCompare2(s, t))
