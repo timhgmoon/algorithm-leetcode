@@ -1,5 +1,6 @@
 # 283. Move Zeroes
 
+#time complexity: O(n)
 def moveZeroes(nums):
   """
   Do not return anything, modify nums in-place instead.
