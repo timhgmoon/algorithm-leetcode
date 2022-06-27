@@ -7,13 +7,11 @@ def kClosest(points, k):
   ans = []
   for i in range(points_len):
     cur_distance = points[i][0]**2 + points[i][1]**2
-    dist.append([cur_distance, i])
+    dist.append([cur_distance, points[i]])
 
   dist.sort()
-  for i in range(len(dist)):
-    inorder_index = dist[i][1]
-    ans.append(points[inorder_index])
-
+  for i in range(k):
+    ans.append(dist[i][1])
   return ans[:k]
 
 points = [[3,3],[5,-1],[-2,4]]
